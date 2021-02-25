@@ -28,6 +28,7 @@
     "pdfmake": "^0.1.70",
     "pusher": "^4.0.2",
     "pusher-js": "^7.0.3",
+    "socket.io": "^2.4.1",
     "stream": "0.0.2"
   }
 }

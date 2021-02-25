@@ -4,6 +4,8 @@ const { join } = require("path");
 const listEndpoints = require("express-list-endpoints");
 const mongoose = require("mongoose");
 // const Pusher = require('pusher')
+const http = require("http");
+const createSocketServer = require("./socket");
 
 const profilesRouter = require("./services/profiles");
 const experiencesRouter = require("./services/experiences");
@@ -19,7 +21,8 @@ const {
 } = require("./errorHandlers");
 
 const server = express();
-
+const httpServer = http.createServer(server);
+createSocketServer(httpServer);
 const port = process.env.PORT;
 
 // //CHATBOX SIDESERVER
@@ -57,7 +60,7 @@ mongoose
     useCreateIndex: true,
   })
   .then(
-    server.listen(port, () => {
+    httpServer.listen(port, () => {
       console.log("Running on port", port);
     })
   )
